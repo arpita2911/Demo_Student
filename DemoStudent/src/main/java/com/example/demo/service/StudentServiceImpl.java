@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.exception.InvalidRollNumberException;
 import com.example.demo.model.Student;
 import com.example.demo.repository.StudentRepository;
 
@@ -16,7 +17,9 @@ private StudentRepository sr;
 	
 	@Override
 	public void add(Student s) {
-		// TODO Auto-generated method stub
+		
+		if(s.getRoll()<=0)
+			throw new InvalidRollNumberException("Roll number must be greater than 0");
 		sr.save(s);
 	}
 
